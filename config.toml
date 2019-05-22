@@ -10,7 +10,7 @@ home = [ "HTML", "RSS", "JSON" ]
   themeVariant = "encompass"
   description = "Documentation for Encompass ECS"
   author = "Evan Hemsley"
-  showVisitedLinks = true
+  showVisitedLinks = false
   disableBreadcrumb = false
   disableNextPrev = false
 
