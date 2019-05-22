@@ -1,0 +1,4 @@
+[submodule "public"]
+	path = public
+	url = git@github.com:encompass-ecs/encompass-ecs.github.io.git
+	branch = master
