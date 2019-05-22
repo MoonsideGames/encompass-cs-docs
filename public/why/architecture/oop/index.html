@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Why? :: Encompass Docs</title>
+    <title>OOP :: Encompass Docs</title>
 
     
     <link href="/css/nucleus.css?1558486144" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/why/">
+  <body class="" data-url="/why/architecture/oop/">
     <nav id="sidebar" class="">
 
 
@@ -77,7 +77,7 @@
     
     <li data-nav-id="/why/" title="Why?" class="dd-item 
         parent
-        active
+        
         
         ">
       <a href="/why/">
@@ -127,7 +127,7 @@
   
     
     <li data-nav-id="/why/architecture/" title="Architecture" class="dd-item 
-        
+        parent
         
         
         ">
@@ -170,7 +170,7 @@
  
   
     
-      <li data-nav-id="/why/architecture/oop/" title="OOP" class="dd-item ">
+      <li data-nav-id="/why/architecture/oop/" title="OOP" class="dd-item active">
         <a href="/why/architecture/oop/">
         OOP
         
@@ -270,6 +270,8 @@
                         </a>
                     </span>
                   
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
                   <span class="links">
                  
                  
@@ -280,7 +282,19 @@
             
           
           
-            <a href='/'>Encompass</a> > Why?
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>Encompass</a> > <a href='/why/'>Why?</a> > <a href='/why/architecture/'>Architecture</a> > OOP
+          
+         
+          
+         
           
          
           
@@ -289,6 +303,13 @@
                   </span>
                 </div>
                 
+                    <div class="progress">
+    <div class="wrapper">
+
+    </div>
+</div>
+
+                
               </div>
             </div>
             
@@ -296,34 +317,46 @@
         
         </div>
         
-          <div id="chapter">
-        
         <div id="body-inner">
+          
+            <h1>
+              
+              OOP
+            </h1>
           
 
         
 
 
 
+<p><em>They call it OOP because it was a mistake. &ndash;Unknown</em></p>
 
-	
+<p>You are probably very familiar with OOP, or object-oriented programming, as a game designer. It is the structural idea behind most games as they are written today, though this is slowly changing.</p>
 
-<h3 id="chapter-1">Chapter 1</h3>
+<p>OOP is a structure based on the concept of <strong>Objects</strong>. Objects contain both data, referred to as <em>properties</em>, and logic, referred to as <em>methods</em>.</p>
 
-<h1 id="why">Why?</h1>
+<p>Object orientation is an intuitive idea when it comes to building simulation-oriented applications such as video games. We think of each &ldquo;thing&rdquo; in the game as a self-contained object which can be acted upon externally via methods. For example, in the game Asteroids, we could think of the game this way: the ship is an object, the bullets the ship fires are objects, the asteroids are objects, and so on.</p>
 
-<p>A question that many of us find ourselves asking when coding a game.</p>
+<p>Unfortunately, things aren&rsquo;t quite this simple when it comes to more complex games.</p>
 
+<p>As programmers we want to re-use code as much as possible. Every bit of duplication is an opportunity for bugs to lurk in our program. Object-oriented code accomplishes re-use with a concept called <em>inheritance</em>. With inheritance, classes can be partially based on other classes. Maybe a Ball class has a position and a velocity and a bounciness property. A BouncyBall would inherit from Ball and have a greater value in its bounciness property. Simple enough, right?</p>
 
+<p>But we soon run into problems. In game development we often wish to mix-and-match behaviors. Suppose I have an object where it would make sense to inherit from <em>two</em> different classes. Now&hellip; we are hosed! Why? If two parent classes have a property or a method with the same name, now our child object has no idea what to do. Object-oriented systems, in fact, forbid multiple inheritance. So we end up having to share code via helper functions, or giant manager classes, or other awkward patterns.</p>
 
+<p>We also run into an issue called <em>tight coupling</em>. Objects that reference each other&rsquo;s properties or methods directly become a problem when we change the structure of those objects in any way. If we modify the structure of object B, and object A references object B, then we have to also modify object A. In a particularly poorly structured system, we might have to modify a dozen objects just to make a slight modification to the behavior of a single object.</p>
+
+<p>Tight coupling is our worst nightmare as game programmers. Games are, by nature, extremely complex simulations. The more coupling we have between objects, the more of the entire environment of the game we have to understand before we can pick apart the specific behavior of a single object, let alone the whole game itself. It is very possible that we can surprise ourselves by unexpectedly changing the behavior of different objects when modifying a single object. And we hate surprises.</p>
+
+<p>We want our architecture to encourage us to create as little coupling as possible between different elements of the game, so that we can look at any individual element of the game and easily understand how it behaves without needing to deeply understand the other elements of the game. We also wish to modify behavior without introducing unexpected changes in other seemingly unrelated objects. OOP works in very specific encapsulated cases, but it is not a satisfactory structure for implementing game behavior.</p>
+
+<p>It turns out there is an architecture that addresses our desire to be able to compose objects out of several different behaviors. Let&rsquo;s learn about it.</p>
 
 
 <footer class=" footline" >
 	
 </footer>
 
-        
-            </div> 
+
         
         </div> 
         
@@ -390,6 +423,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -402,6 +436,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -419,6 +456,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -434,6 +472,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -477,10 +518,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/" title="Encompass"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/why/architecture/mess/" title="The Messy Basement"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/why/the_hard_way/" title="The Hard Way" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/why/architecture/ecs/" title="ECS" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -511,3 +552,4 @@
 
   </body>
 </html>
+

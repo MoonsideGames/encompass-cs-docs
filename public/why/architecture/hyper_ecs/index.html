@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Why? :: Encompass Docs</title>
+    <title>Hyper ECS :: Encompass Docs</title>
 
     
     <link href="/css/nucleus.css?1558486144" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/why/">
+  <body class="" data-url="/why/architecture/hyper_ecs/">
     <nav id="sidebar" class="">
 
 
@@ -77,7 +77,7 @@
     
     <li data-nav-id="/why/" title="Why?" class="dd-item 
         parent
-        active
+        
         
         ">
       <a href="/why/">
@@ -127,7 +127,7 @@
   
     
     <li data-nav-id="/why/architecture/" title="Architecture" class="dd-item 
-        
+        parent
         
         
         ">
@@ -208,7 +208,7 @@
  
   
     
-      <li data-nav-id="/why/architecture/hyper_ecs/" title="Hyper ECS" class="dd-item ">
+      <li data-nav-id="/why/architecture/hyper_ecs/" title="Hyper ECS" class="dd-item active">
         <a href="/why/architecture/hyper_ecs/">
         Hyper ECS
         
@@ -270,6 +270,8 @@
                         </a>
                     </span>
                   
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
                   <span class="links">
                  
                  
@@ -280,7 +282,19 @@
             
           
           
-            <a href='/'>Encompass</a> > Why?
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>Encompass</a> > <a href='/why/'>Why?</a> > <a href='/why/architecture/'>Architecture</a> > Hyper ECS
+          
+         
+          
+         
           
          
           
@@ -289,6 +303,13 @@
                   </span>
                 </div>
                 
+                    <div class="progress">
+    <div class="wrapper">
+
+    </div>
+</div>
+
+                
               </div>
             </div>
             
@@ -296,34 +317,54 @@
         
         </div>
         
-          <div id="chapter">
-        
         <div id="body-inner">
+          
+            <h1>
+              
+              Hyper ECS
+            </h1>
           
 
         
 
 
 
+<p>Hyper ECS is a new architecture pattern that attempts to address some common issues with standard ECS.</p>
 
-	
+<p>The core of the architecture is the introduction of a new construct to ECS: the <strong>Message</strong>.</p>
 
-<h3 id="chapter-1">Chapter 1</h3>
+<p>A Message is fundamentally a variant of Component, in that it only contains data. But, it is designed to be temporary and is discarded at the end of each frame. It is used to communicate useful information between Systems.</p>
 
-<h1 id="why">Why?</h1>
+<p>We also introduce some extra information to Systems. Each System must declare the Messages that it <strong>Reads</strong>, the Messages that it <strong>Emits</strong>, and the Components that it <strong>Mutates</strong>.</p>
 
-<p>A question that many of us find ourselves asking when coding a game.</p>
+<p>Let&rsquo;s go back to our earlier example.</p>
 
+<p>We have TransformComponent, which contains position and orientation data, and VelocityComponent, which contains an <em>x</em> and <em>y</em> component for linear motion.</p>
 
+<p>Our MotionDetecterSystem reads each Entity that has both a TransformComponent and a VelocityComponent, and emits a MotionMessage, which contains a reference to the specific TransformComponent and the <em>x</em> and <em>y</em> velocity given by the VelocityComponent.</p>
 
+<p>We also have a TeleportSystem that needs to teleport the character forward a bit. Let&rsquo;s say when the player presses the X button, a TeleportMessage is fired. The TeleportSystem reads this message and emits a MotionMessage in response.</p>
+
+<p>Now we have our MotionSystem. The MotionSystem declares that it Mutates the TransformComponent, reads the MotionMessages that apply to each TransformComponent, and applies them simultaneously, adding their <em>x</em> and <em>y</em> values to the TransformComponent. Voilà! No race conditions! And we can re-use similar behaviors easily without re-writing code by consolidating Messages.</p>
+
+<p>You might be wondering: how does the game know which order these systems need to be in?</p>
+
+<p>With the power of graph theory, we can construct an order for our Systems so that any System which Emits a certain Message runs before any System that Reads the same Message. This means, when you write behavior for your game, you <em>never</em> have to specify the order in which your Systems run. You simply write code, and the Systems run in a valid order, every time, without surprising you.</p>
+
+<p>Of course, to accomplish this, there are some restrictions that your Systems must follow.</p>
+
+<p>Systems are not allowed to create message cycles: if System A emits Message B, which is read by System B which emits Message C, which is read by System A, then we cannot create a valid ordering of Systems. This is not a flaw in the architecture: A message cycle is simply evidence that you haven&rsquo;t quite thought through what your Systems are doing, and can generally be easily eliminated by the introduction of a new System.</p>
+
+<p>Two separate systems are not allowed to Mutate the same Component. Obviously, if we allowed this, we would introduce the possibility of two Systems changing the same component, creating a race condition. If we have two Systems where it makes sense to change the same Component, we can create a new Message and System to consolidate the changes, and avoid race conditions.</p>
+
+<p>If you are used to programming games in an object-oriented way, you will likely find the ECS pattern counter-intuitive at first. But once you learn to think in a Hyper ECS way, you will be shocked at how flexible and simple your programs become.</p>
 
 
 <footer class=" footline" >
 	
 </footer>
 
-        
-            </div> 
+
         
         </div> 
         
@@ -390,6 +431,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -402,6 +444,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -450,6 +495,7 @@
             
             
                 
+                    
                     
                 
                 
@@ -477,10 +523,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/" title="Encompass"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/why/architecture/ecs/" title="ECS"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/why/the_hard_way/" title="The Hard Way" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/why/architecture/mess/" title="The Messy Basement" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -511,3 +557,4 @@
 
   </body>
 </html>
+
