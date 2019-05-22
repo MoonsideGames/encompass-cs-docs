@@ -4,7 +4,7 @@ date: 2019-05-21T15:54:18-07:00
 weight: 20
 ---
 
-*They call it OOP because it was a mistake. --Unknown*
+##### *They call it OOP because it was a mistake. --Unknown*
 
 You are probably very familiar with OOP, or object-oriented programming, as a game designer. It is the structural idea behind most games as they are written today, though this is slowly changing.
 

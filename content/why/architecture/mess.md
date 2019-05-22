@@ -18,4 +18,6 @@ The key characteristic of this structure is that there almost doesn't seem to be
 
 Shockingly, some game engines and frameworks not only fail to prevent this kind of architecture, they actually *encourage* it!
 
+"But *I* know where everything is!" Tell that to yourself three months from now.
+
 I don't need to say much more about this kind of architecture. It's obviously bad. Let's move on.
