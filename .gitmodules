@@ -2,3 +2,6 @@
 	path = public
 	url = git@github.com:encompass-ecs/encompass-ecs.github.io.git
 	branch = master
+[submodule "themes/hugo-notice"]
+	path = themes/hugo-notice
+	url = https://github.com/martignoni/hugo-notice.git

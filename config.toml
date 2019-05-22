@@ -1,7 +1,9 @@
 baseURL = "/"
 languageCode = "en-US"
 title = "Encompass Docs"
-theme = "hugo-theme-learn"
+theme = ["hugo-notice", "hugo-theme-learn"]
+pygmentsUseClasses = true
+pygmentsCodefences = true
 
 [outputs]
 home = [ "HTML", "RSS", "JSON" ]
@@ -13,4 +15,3 @@ home = [ "HTML", "RSS", "JSON" ]
   showVisitedLinks = false
   disableBreadcrumb = false
   disableNextPrev = false
-

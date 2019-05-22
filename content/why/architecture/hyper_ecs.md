@@ -4,7 +4,7 @@ date: 2019-05-21T15:56:13-07:00
 weight: 30
 ---
 
-Hyper ECS is a new architecture pattern that attempts to address some common issues with standard ECS.
+Hyper ECS is a new architecture pattern that attempts to address some common issues with standard ECS. This is the architecture that Encompass implements.
 
 The core of the architecture is the introduction of a new construct to ECS: the **Message**.
 
@@ -24,7 +24,7 @@ Now we have our MotionSystem. The MotionSystem declares that it Mutates the Tran
 
 You might be wondering: how does the game know which order these systems need to be in? Well...
 
-**Encompass figures it out for you.**
+**Hyper ECS figures it out for you.**
 
 That's right! With the power of graph theory, we can construct an order for our Systems so that any System which Emits a certain Message runs before any System that Reads the same Message. This means, when you write behavior for your game, you *never* have to specify the order in which your Systems run. You simply write code, and the Systems run in a valid order, every time, without surprising you.
 
