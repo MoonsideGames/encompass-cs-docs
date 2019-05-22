@@ -1,4 +1,5 @@
-languageCode = "en-us"
+baseURL = "/"
+languageCode = "en-US"
 title = "Encompass Docs"
 theme = "hugo-theme-learn"
 
@@ -6,4 +7,10 @@ theme = "hugo-theme-learn"
 home = [ "HTML", "RSS", "JSON" ]
 
 [params]
-themeVariant = "encompass"
+  themeVariant = "encompass"
+  description = "Documentation for Encompass ECS"
+  author = "Evan Hemsley"
+  showVisitedLinks = true
+  disableBreadcrumb = false
+  disableNextPrev = false
+
