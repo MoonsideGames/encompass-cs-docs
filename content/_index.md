@@ -12,3 +12,5 @@ encompass lets you write clean, de-coupled code so you can spend more time on yo
 
 encompass is currently available with a TypeScript implementation that fully supports transpilation to Javascript and Lua.
 A C# implementation is forthcoming.
+
+If you are here to learn how to use Encompass and don't care about the justifications for it, I recommend skipping ahead to Chapter 2.
