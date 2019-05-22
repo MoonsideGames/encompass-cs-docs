@@ -24,6 +24,8 @@ git push origin master
 cd ..
 
 # Commit submodule change.
+git add public
+
 msg="updating submodule"
 if [ $# -eq 1 ]
   then msg="$1"
