@@ -22,3 +22,15 @@ git push origin master
 
 # Come Back up to the Project Root
 cd ..
+
+# Commit submodule change.
+msg="updating submodule"
+if [ $# -eq 1 ]
+  then msg="$1"
+fi
+git commit -m "$msg"
+
+# Push repo.
+git push origin master
+
+echo -e "Done."
