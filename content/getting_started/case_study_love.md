@@ -57,4 +57,4 @@ If you just want to build the game without running it, do:
 > npm run build
 ```
 
-That's everything you need to start making a game with Encompass and LÖVE! Wasn't that easy?
+That's everything you need to start making a game with Encompass and LÖVE!
