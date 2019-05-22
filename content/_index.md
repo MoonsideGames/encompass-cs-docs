@@ -10,7 +10,9 @@ Object-oriented code is messy and rapidly becomes unmaintainable.
 
 encompass lets you write clean, de-coupled code so you can spend more time on your game design and less time fixing bugs.
 
-encompass is currently available with a TypeScript implementation that fully supports transpilation to Javascript and Lua.
+encompass is currently available with a TypeScript implementation that fully supports transpilation to Javascript and
+[Lua](https://github.com/TypeScriptToLua/TypeScriptToLua).
+
 A C# implementation is forthcoming.
 
 If you are here to learn how to use Encompass and don't care about the justifications for it, I recommend skipping ahead to [Chapter 2](getting_started).
