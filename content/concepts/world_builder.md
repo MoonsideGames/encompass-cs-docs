@@ -13,19 +13,19 @@ The WorldBuilder uses Engines and their Message read/emit information to determi
 Here is an example usage:
 
 ```ts
+import { WorldBuilder } from "encompass-ecs";
+import { CanvasComponent } from "./components/canvas";
+import { PositionComponent } from "./components/position";
+import { VelocityComponent } from "./components/velocity";
+import { MotionEngine } from "./engines/motion";
+import { CanvasRenderer } from "./renderers/canvas";
+
 class Game {
     private World world;
 
     ...
 
     public load() {
-        import { WorldBuilder } from "encompass-ecs";
-        import { CanvasComponent } from "./components/canvas";
-        import { PositionComponent } from "./components/position";
-        import { VelocityComponent } from "./components/velocity";
-        import { MotionEngine } from "./engines/motion";
-        import { CanvasRenderer } from "./renderers/canvas";
-
         const world_builder = new WorldBuilder();
 
         world_builder.add_engine(MotionEngine);
