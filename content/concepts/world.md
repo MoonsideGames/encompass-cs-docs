@@ -42,4 +42,8 @@ But you can call these methods wherever you see fit.
 Certain Encompass projects actually have multiple separate Worlds to manage certain behaviors. This is perfectly valid and can be a great way to structure your project, but be warned that it is difficult to share information between Worlds by design.
 {{% /notice %}}
 
+**What's that whole dt business about?**
+
+*dt* stands for delta-time. Correct usage of delta-time is crucial to make sure that your game does not become *frame-dependent*, which is very bad. We'll talk more about frame-dependence later in the tutorial, but to briefly summarize, if your game is frame-dependent you will run into very frustrating behavior when running your game on different computer systems.
+
 That's it! Now that we have these high-level concepts down, let's build an actual, for-real game.
