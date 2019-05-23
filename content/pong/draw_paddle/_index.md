@@ -1,7 +1,7 @@
 ---
-title: "Drawing A Paddle"
+title: "Drawing a Paddle"
 date: 2019-05-23T11:02:45-07:00
-weight: 0
+weight: 10
 ---
 
 It's nice to see something on screen right away when we start making a game, so let's make that happen.

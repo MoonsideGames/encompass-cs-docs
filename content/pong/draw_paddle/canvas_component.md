@@ -6,7 +6,7 @@ weight: 5
 
 LOVE provides a neat little drawing feature called Canvases. You can tell LOVE to draw to a Canvas instead of the screen, and then save the Canvas so you don't have to repeat lots of draw procedures. It's very nifty.
 
-Let's set up a CanvasComponent.
+Let's set up a CanvasComponent. To create a new Component type, we extend the Component class.
 
 Create a file: **game/components/canvas.ts**
 
