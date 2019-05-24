@@ -168,7 +168,7 @@ move_speed_component.y = 400;
 ```
 
 <video width="640" height="360" autoplay="autoplay" muted="muted" loop="loop" style="display: block; margin: 0 auto; width: 640;">
-    <source src="/images/better_paddle.webm" type="video/webm">
+    <source src="/images/faster_paddle.webm" type="video/webm">
 </video>
 
 That's more like it.
