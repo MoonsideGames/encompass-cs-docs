@@ -44,7 +44,26 @@ boundaries_component.bottom = 720;
 
 Now how do our boundaries actually work? You might recall that our MotionEngine updates the positions of objects directly. But that means it could leave something out of the boundary. Remember that we can't have two Engines mutate the same Component type.
 
-We could do boundary checking inside of MotionEngine. But we don't know that everything that moves will need to respect the boundary, so it seems bad to put that inside of MotionEngine.
+There's something else going on here too: eventually we're gonna need the ball to bounce off of the paddles as well right? I think what we really need here is a collision system.
+
+All of our objects are rectangles so I think a simple AABB check will suffice. Essentially we can use the four corners of our rectangles to see if they are overlapping.
+
+Let's revisit our BoundariesComponent. I think we can use this for collision boundaries. And since we're specifying that everything will be a rectangle, we can simplify our BoundariesComponent to just have width and height values. In **games/components/boundaries.ts**
+
+```ts
+import { Component } from "encompass-ecs";
+
+export class BoundariesComponent extends Component {
+    public width: number;
+    public height: number;
+}
+```
+
+Let's write a CollisionCheckEngine. In **games/engines/collision.ts**
+
+```ts
+
+```
 
 I think what we should do is have two new Engines. The first will be an Engine that takes a Message that reads a position and checks if it is outside of the boundaries. Then we can make a new Engine that finalizes the new value of the PositionComponent.
 
