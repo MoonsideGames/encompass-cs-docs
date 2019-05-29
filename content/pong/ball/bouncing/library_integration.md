@@ -10,11 +10,11 @@ Now we need to declare that library to TypeScript so we can use it in our game c
 
 If you'd like a very detailed description of declaration files and how they work, I recommend perusing the [official documentation](https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html). But I will give a specific use-case walkthrough here.
 
-First, we need to find out which functions of the library we are actually going to use. If we look over the bump.lua documentation, we see that the library asks us to initialize a "world" using *bump.newWorld*, add rectangles to the world with *world:add*, and declare their movements using *world:move*. We can also use *world:check* and *world:update* for finer control over the rectangles.
-
 First, let's download _bump.lua_ and place it in the lua-lib folder. This ensures that the library will be included in your game during the build process.
 
 In the lua-lib folder, let's create a new file: **lua-lib/bump.d.ts**
+
+Now we need to find out which functions of the library we are actually going to use. If we look over the bump.lua documentation, we see that the library asks us to initialize a "world" using *bump.newWorld*, add rectangles to the world with *world:add*, and declare their movements using *world:move*. We can also use *world:check* and *world:update* for finer control over the rectangles.
 
 First things first, the newWorld function.
 
