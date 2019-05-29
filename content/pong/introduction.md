@@ -11,3 +11,7 @@ Everyone has played, or at least heard of, Pong. Right? Right...
 Pong was one of the first video games ever created and as such, it is extremely simple. We're introducing a lot of new concepts with Encompass and the Hyper ECS architecture, so I think it's a good choice to try re-implementing the very simple Pong in Encompass as an example.
 
 We'll be developing this with the Encompass/LOVE starter pack. Go ahead and [set that up](/getting_started/case_study_love/) if you haven't already so you can follow along. And please do follow along - you can do it!
+
+{{% notice tip %}}
+I recommend following along with the tutorial by actually typing out the code rather than cut-and-pasting. You'll be able to follow the structure of what's happening much better. Think of it like taking notes.
+{{% /notice %}}
