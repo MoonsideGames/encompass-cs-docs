@@ -4,7 +4,7 @@ date: 2019-05-28T19:06:03-07:00
 weight: 700
 ---
 
-Let's make the CollisionDispatchEngine.
+Let's make the CollisionDispatchEngine. All it needs to do is read the CollisionMessages and create specific collision messages from them.
 
 In **games/engines/collision_dispatch.ts**:
 
@@ -56,7 +56,13 @@ export class CollisionDispatchEngine extends Engine {
 }
 ```
 
-Now we are emitting a BallWallCollisionMessage every time a ball collides with a wall. Next we need to resolve the collision.
+Now we are emitting a BallWallCollisionMessage every time a ball collides with a wall. Why don't you try filling in the other collision messages yourself?
+
+Don't forget to add it in **game.ts**
+
+```ts
+    world_builder.add_engine(CollisionDispatchEngine);
+```
 
 {{% notice notice %}}
 Clever readers have probably noticed that this is a bit of an awkward structure. For our game, we only have three types of colliding entities we care about, so some switch statements work fine. What about a game with 20 different kinds of colliding entities? 100? We'd probably want a much more generic structure or this Engine's complexity would get out of hand.

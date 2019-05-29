@@ -4,6 +4,8 @@ date: 2019-05-28T18:01:49-07:00
 weight: 500
 ---
 
+Let's rewrite our MotionEngine.
+
 In **game/messages/collision_check.ts**:
 
 ```ts
@@ -29,9 +31,9 @@ export class UpdatePositionMessage extends Message implements ComponentMessage {
 }
 ```
 
-Let's rewrite our MotionEngine.
+Here's the process we'll follow for our MotionEngine:
 
-We associate MotionMessages with their PositionComponents. We consolidate them to get an "x_delta" and a "y_delta". We create an UpdatePositionMessage containing these values. Next, we create CollisionCheckMessages containing the delta values if the PositionComponent's entity has a BoundingBoxComponent.
+We associate MotionMessages with their PositionComponents. We consolidate them to get a total "x_delta" and a "y_delta". We create an UpdatePositionMessage containing these values. Next, we create CollisionCheckMessages containing the delta values if the PositionComponent's entity has a BoundingBoxComponent.
 
 Finally, we go over all BoundariesComponents that didn't have MotionMessages associated with them and create CollisionCheckMessages for those too. Otherwise things that didn't move wouldn't be collision checked, and that would not be correct.
 

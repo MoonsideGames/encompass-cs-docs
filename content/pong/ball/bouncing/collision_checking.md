@@ -28,7 +28,7 @@ Let's break down what we want collision detection to actually do.
 
 First, we tell the Collision World about the current positions of the objects. Next we check each object for collisions by using the "check" method, which takes the proposed new position of the object and gives us collision information in return.
 
-For every collision that we find, we create a CollisionMessage for it. Why are we comparing the collision types? Let's say we want to have a BallWallCollisionMessage. Obviously we will want to know which entity in the collision represents the ball and which one represents the wall. So we just sort them at this step for convenience.
+For every collision that we find, we create a CollisionMessage for it.
 
 In **game/engines/collision_check.ts**:
 
@@ -114,6 +114,20 @@ export class CollisionCheckEngine extends Engine {
             }
         }
     }
+}
+```
+
+Why are we comparing the collision types? Let's say we want to have a BallWallCollisionMessage. Obviously we will want to know which entity in the collision represents the ball and which one represents the wall. So we just sort them at this step for convenience.
+
+Let's make sure that our enum is sorted in alphabetical order.
+
+In **game/components/collision_types.ts**:
+
+```ts
+export enum CollisionType {
+    ball,
+    paddle,
+    wall,
 }
 ```
 
