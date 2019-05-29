@@ -1,15 +1,15 @@
 # Environment
-os:
-  - xenial
+os: osx
 
-before_install:
-  - sudo apt-get install -y hugo
+install:
+  - brew install hugo
+  - sudo easy_install Pygments
 
-# Install the apt prerequisites
-addons:
-  apt:
-    packages:
-      - python-pygments
+# # Install the apt prerequisites
+# addons:
+#   apt:
+#     packages:
+#       - python-pygments
 
 # Compile the site
 script:
