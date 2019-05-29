@@ -1,6 +1,14 @@
 # Environment
 os:
-    - linux
+  - linux
+
+language: go
+
+go:
+  - master
+
+install:
+  - go get github.com/spf13/hugo
 
 # Install the apt prerequisites
 addons:
@@ -10,23 +18,23 @@ addons:
 
 # Compile the site
 script:
-    - binaries/hugo
+  - hugo
 
 # Deploy the site - this hook comes from Travis integration
 deploy:
-    # The output of our static site
-    local_dir: public
-    # The repository we are deploying to
-    repo: encompass-ecs/encompass-ecs.github.io
-    # The branch we are pushing the static repository
-    target_branch: master
-    # Information to use in the commit
-    email: evan@moonside.games
-    name: "Evan Hemsley"
-    provider: pages
-    # Recommended setting
-    skip_cleanup: true
-    # Set in Travis CI dashboard
-    github_token: $GITHUB_TOKEN
-    on:
-      branch: master
+  # The output of our static site
+  local_dir: public
+  # The repository we are deploying to
+  repo: encompass-ecs/encompass-ecs.github.io
+  # The branch we are pushing the static repository
+  target_branch: master
+  # Information to use in the commit
+  email: evan@moonside.games
+  name: "Evan Hemsley"
+  provider: pages
+  # Recommended setting
+  skip_cleanup: true
+  # Set in Travis CI dashboard
+  github_token: $GITHUB_TOKEN
+  on:
+    branch: master
