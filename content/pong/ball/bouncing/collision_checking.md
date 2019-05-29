@@ -34,7 +34,7 @@ In **game/engines/collision_check.ts**:
 
 ```ts
 import { Emits, Engine, Entity, Reads } from "encompass-ecs";
-import { BoundariesComponent } from "game/components/boundaries";
+import { BoundingBoxComponent } from "game/components/bounding_box";
 import { CollisionTypesComponent } from "game/components/collision_types";
 import { PositionComponent } from "game/components/position";
 import { CollisionMessage } from "game/messages/collision";
@@ -57,12 +57,12 @@ export class CollisionCheckEngine extends Engine {
         for (const message of collision_check_messages.values()) {
             const entity = message.entity;
             const position = entity.get_component(PositionComponent);
-            const boundaries = entity.get_component(BoundariesComponent);
+            const bounding_box = entity.get_component(BoundingBoxComponent);
 
             this.collision_world.update(
                 message.entity,
-                position.x - boundaries.width * 0.5,
-                position.y - boundaries.height * 0.5
+                position.x - bounding_box.width * 0.5,
+                position.y - bounding_box.height * 0.5
             );
         }
 
@@ -70,14 +70,14 @@ export class CollisionCheckEngine extends Engine {
         for (const message of collision_check_messages.values()) {
             const entity = message.entity;
             const position = entity.get_component(PositionComponent);
-            const boundaries = entity.get_component(BoundariesComponent);
+            const bounding_box = entity.get_component(BoundingBoxComponent);
             const x = position.x + message.x_delta;
             const y = position.y + message.y_delta;
 
             const [new_x, new_y, cols, len] = this.collision_world.check(
                 entity,
-                x - boundaries.width * 0.5,
-                y - boundaries.height * 0.5,
+                x - bounding_box.width * 0.5,
+                y - bounding_box.height * 0.5,
                 () => "touch"
             );
 

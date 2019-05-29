@@ -20,7 +20,7 @@ In **game/engines/collision/ball_wall.ts**:
 
 ```ts
 import { Emits, Engine, Reads } from "encompass-ecs";
-import { BoundariesComponent } from "game/components/boundaries";
+import { BoundingBoxComponent } from "game/components/bounding_box";
 import { PositionComponent } from "game/components/position";
 import { VelocityComponent } from "game/components/velocity";
 import { BallWallCollisionMessage } from "game/messages/collisions/ball_wall";
@@ -34,15 +34,15 @@ export class BallWallCollisionEngine extends Engine {
         for (const message of this.read_messages(BallWallCollisionMessage).values()) {
             const ball_position = message.ball_entity.get_component(PositionComponent);
             const ball_velocity = message.ball_entity.get_component(VelocityComponent);
-            const ball_boundaries = message.ball_entity.get_component(BoundariesComponent);
+            const ball_bounding_box = message.ball_entity.get_component(BoundingBoxComponent);
 
             const velocity_message = this.emit_component_message(UpdateVelocityMessage, ball_velocity);
             velocity_message.x_delta = 2 * message.normal.x * Math.abs(ball_velocity.x);
             velocity_message.y_delta = 2 * message.normal.y * Math.abs(ball_velocity.y);
 
             // calculate bounce, remembering to re-transform coordinates to origin space
-            const y_distance = Math.abs(message.ball_new_y - (message.touch.y + ball_boundaries.height * 0.5));
-            const x_distance = Math.abs(message.ball_new_x - (message.touch.x + ball_boundaries.width * 0.5));
+            const y_distance = Math.abs(message.ball_new_y - (message.touch.y + ball_bounding_box.height * 0.5));
+            const x_distance = Math.abs(message.ball_new_x - (message.touch.x + ball_bounding_box.width * 0.5));
 
             const position_message = this.emit_component_message(UpdatePositionMessage, ball_position);
             position_message.x_delta = 2 * message.normal.x * x_distance;

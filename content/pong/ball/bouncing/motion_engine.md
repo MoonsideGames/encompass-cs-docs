@@ -35,11 +35,11 @@ Here's the process we'll follow for our MotionEngine:
 
 We associate MotionMessages with their PositionComponents. We consolidate them to get a total "x_delta" and a "y_delta". We create an UpdatePositionMessage containing these values. Next, we create CollisionCheckMessages containing the delta values if the PositionComponent's entity has a BoundingBoxComponent.
 
-Finally, we go over all BoundariesComponents that didn't have MotionMessages associated with them and create CollisionCheckMessages for those too. Otherwise things that didn't move wouldn't be collision checked, and that would not be correct.
+Finally, we go over all BoundingBoxComponents that didn't have MotionMessages associated with them and create CollisionCheckMessages for those too. Otherwise things that didn't move wouldn't be collision checked, and that would not be correct.
 
 ```ts
 import { Emits, Engine, Reads } from "encompass-ecs";
-import { BoundariesComponent } from "game/components/boundaries";
+import { BoundingBoxComponent } from "game/components/bounding_box";
 import { PositionComponent } from "game/components/position";
 import { CollisionCheckMessage } from "game/messages/collision_check";
 import { MotionMessage } from "game/messages/component/motion";
@@ -50,7 +50,7 @@ import { GCOptimizedList, GCOptimizedSet } from "tstl-gc-optimized-collections";
 @Emits(UpdatePositionMessage, CollisionCheckMessage)
 export class MotionEngine extends Engine {
     private component_to_message = new Map<PositionComponent, GCOptimizedList<MotionMessage>>();
-    private boundaries_set = new GCOptimizedSet<BoundariesComponent>();
+    private bounding_box_set = new GCOptimizedSet<BoundingBoxComponent>();
 
     public update(dt: number) {
         const motion_messages = this.read_messages(MotionMessage);
@@ -73,18 +73,18 @@ export class MotionEngine extends Engine {
             update_position_message.x_delta = x_delta;
             update_position_message.y_delta = y_delta;
 
-            if (entity.has_component(BoundariesComponent)) {
+            if (entity.has_component(BoundingBoxComponent)) {
                 const collision_check_message = this.emit_message(CollisionCheckMessage);
                 collision_check_message.entity = entity;
                 collision_check_message.x_delta = x_delta;
                 collision_check_message.y_delta = y_delta;
 
-                this.boundaries_set.add(entity.get_component(BoundariesComponent));
+                this.bounding_box_set.add(entity.get_component(BoundingBoxComponent));
             }
         }
 
-        for (const component of this.read_components(BoundariesComponent).values()) {
-            if (!this.boundaries_set.has(component)) {
+        for (const component of this.read_components(BoundingBoxComponent).values()) {
+            if (!this.bounding_box_set.has(component)) {
                 const collision_check_message = this.emit_message(CollisionCheckMessage);
                 collision_check_message.entity = this.get_entity(component.entity_id)!;
                 collision_check_message.x_delta = 0;
