@@ -1,14 +1,9 @@
 # Environment
 os:
-  - linux
+  - xenial
 
-language: go
-
-go:
-  - master
-
-install:
-  - go get github.com/spf13/hugo
+before_install:
+  - sudo apt-get install -y hugo
 
 # Install the apt prerequisites
 addons:
