@@ -111,4 +111,10 @@ Don't forget to add the new Engine in **game.ts**!
 world_builder.add_engine(ComputerControlEngine);
 ```
 
-If we were doing this in an object-oriented way, we would have had to inherit from the paddle or introduce another state to the paddle, thus forcing us to refactor or increase the complexity of the paddle object itself. Here, we didn't really have to change any of our existing logic - all we had to do was create a new component and write a new engine for producing behavior from that component, while getting to retain all the behavior we got from the other paddle components. See how clean and de-coupled this is? This is the power of _composition_ over _inheritance_.
+<video width="640" height="360" autoplay="autoplay" muted="muted" loop="loop" style="display: block; margin: 0 auto; width: 640;">
+    <source src="/images/computer.webm" type="video/webm">
+</video>
+
+If we were doing this in an object-oriented way, we would have had to inherit from the paddle or introduce another state to the paddle, thus forcing us to refactor or increase the complexity of the paddle object itself.
+
+Notice how in our case we didn't really have to change any of our existing logic - all we had to do was create a new component and write a new engine for producing behavior from that component, while getting to retain all the behavior we got from the other paddle components. See how clean and de-coupled this is? This is the power of _composition_ over _inheritance_.
