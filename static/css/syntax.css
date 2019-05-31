@@ -6,6 +6,7 @@ Tragedy and Geometry style by Evan Hemsley
 
 pre {
     background: #06122F;
+    border-radius: 5px;
 }
 
 .hljs {
@@ -65,14 +66,10 @@ pre {
   .hljs-meta .hljs-keyword,
   .hljs-selector-attr,
   .hljs-selector-pseudo,
-  .hljs-link {
-    color: #FFAA00;
-  }
-
-  /* Solarized Red */
+  .hljs-link,
   .hljs-built_in,
   .hljs-deletion {
-    color: #dc322f;
+    color: #FFAA00;
   }
 
   .hljs-formula {
