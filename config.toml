@@ -2,8 +2,6 @@ baseURL = "/"
 languageCode = "en-US"
 title = "Encompass Docs"
 theme = ["hugo-notice", "hugo-theme-learn"]
-pygmentsUseClasses = true
-pygmentsCodefences = true
 
 [outputs]
 home = [ "HTML", "RSS", "JSON" ]
