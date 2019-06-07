@@ -67,6 +67,7 @@ export class ScoreRenderer extends GeneralRenderer {
     }
 }
 ```
+
 Basically, we find each goal component, grab its score component, and draw the score component's value to the screen as text.
 
 If we create new LOVE Text object every frame, this is very performance heavy. So we want to create a Text on initialization and then set its contents instead.

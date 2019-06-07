@@ -134,16 +134,15 @@ export function angleTo(x: number, y: number, u: number, v: number): number;
 
 Now we can use all these useful vector math functions in our game.
 
-
 Let's break down some of the math here.
 
 We want the ball to fire in a random direction, but we don't want its trajectory to be too vertical, or it will take forever to get to one of the paddles, which is boring. We also want it to travel at the same speed regardless of its direction.
 
-Let's start with a vector with an _x_ component of 0 and a _y_ component of our desired speed. You can think of this as an arrow pointing straight downward. Now imagine that arrow as the hand of a clock. How can we describe the angle of the clock hand? As the hand rotates around it differs from its original orientation in an amount of units called _radians_. When that angle changes by 2 times pi, it ends up in the same position. So a rotation a quarter of the way around the clock would be pi divided by 2.
+Let's start with a vector with an _x_ component of our desired speed and a _y_ component of 0. You can think of this as an arrow pointing directly to the right. Now imagine that arrow as the hand of a clock. How can we describe the angle of the clock hand? As the hand rotates around it differs from its original orientation in an amount of units called _radians_. When that angle changes by 2 times pi, it ends up in the same position. So a rotation a quarter of the way around the clock would be pi divided by 2.
 
 ![pi over 2](/images/pi-over-2.png)
 
-You can see that if we rotate our downward vector by pi/2 radians, it will face towards the left paddle. Now, what we want is for the ball to be served at angles like this:
+You can see that if we rotate our direction vector by pi/2 radians, it will face straight down. Now, what we want is for the ball to be served at angles like this:
 
 ![serve area](/images/serve-area.png)
 
@@ -151,15 +150,13 @@ The non-shaded area represents the angles that we want the ball to be served at.
 
 Well, a lot of what we do in game math is guesstimation. "Close enough" can be a powerful phrase! We can always easily tweak the exact values later if we architect our game properly.
 
-![serve area angles](/images/serve-area-angles.png)
+![serve area angles](/images/serve-area-angle.png)
 
-If we draw it out, we know that a quarter-circle rotation is pi/2 radians. The start of our serve range seems to be roughly half that. So that would be pi/4 radians. Sounds reasonable as a starting angle to me. What about the ending angle?
+If we draw it out, we know that a quarter-circle rotation is pi/2 radians. The angle of our serve range seems to be roughly half that. So our rotation would be pi/4 radians. Sounds reasonable as a starting angle to me. How do we actually represent this range?
 
-![three quarters circle](/images/three-quarters.png)
+What if the rotation is _negative_? Well, our positive rotations have been going clockwise - so negative rotations go counter-clockwise! That means our possible serve angle is somewhere between -pi/4 and pi/4.
 
-When we draw it out, we see that it is 3 eighth-circle rotations. So we get 3 * pi/4.
-
-So now we need to pick a random rotation within this range. How should we do that? TypeScript and Lua don't have anything built-in for this. I usually write a helper for this, since it's so common to want a random real number in a certain range.
+So now we need to actually pick a random rotation within this range. How should we do that? TypeScript and Lua don't have anything built-in for this. I usually write a helper for this, since it's so common to want a random real number in a certain range.
 
 Let's create **game/helpers/math.ts**:
 
@@ -170,20 +167,39 @@ export class MathHelper {
     }
 }
 ```
-_love.math.random()_ returns a random real number between 0 and 1. So our _randomFloat_ function will return a random real number between _low_ and _high_.
 
-One last note about rotations. What if the rotation is _negative_? Well, our positive rotations have been going clockwise - so negative rotations go counter-clockwise!
+_love.math.random()_ returns a random real number between 0 and 1. So our _randomFloat_ function will return a random real number between _low_ and _high_.
 
 Now we can construct a formula for our random serve direction.
 
 ```ts
-const direction = MathHelper.randomFloat(math.pi / 4, math.pi * 3 / 4) *
-                    (love.math.random() > 0.5 ? 1 : -1);
+const direction = MathHelper.randomFloat(-math.pi / 4, math.pi / 4);
 ```
 
-What's that last bit on the second line? Remember, _love.math.random()_ returns a random number between 0 and 1. It has a 50% chance of being greater than 0.5. So that last expression means, there's a 50% chance of that value being equal to 1, and a 50% chance of it being equal to -1. If we multiply the rotation by negative 1, we are reversing its direction, so we have an equal chance of the ball being served to the left or the right. Spiffy!
+Now we need the ball to be able to be served left or right. To make our direction point left, we can make the _x_ component of the vector negative.
 
-Also, let's remember to destroy our timer entity at the end so it doesn't keep firing events. That would be bad!
+```ts
+const horizontal_speed = this.ball_speed * (love.math.random() > 0.5 ? 1 : -1);
+```
+
+Remember, _love.math.random()_ returns a random number between 0 and 1. It has a 50% chance of being greater than 0.5. So this expression means  there's a 50% chance of that value being equal to 1, and a 50% chance of it being equal to -1. If we multiply the direction by negative 1, we are reversing its direction, so we have an equal chance of the ball being served to the left or the right. Spiffy!
+
+Now we can put it all together to get our final velocity.
+
+```ts
+[
+    ball_spawn_message.x_velocity,
+    ball_spawn_message.y_velocity,
+] = vectorlight.rotate(direction, horizontal_speed, 0);
+```
+
+This is an example of a _destructuring assignment_. It lets us multiple variables at the same time, which is particularly useful for vector math. You can read more about it [on the official TypeScript documentation](https://www.typescriptlang.org/docs/handbook/variable-declarations.html).
+
+{{% notice notice %}}
+*Why aren't we just using an object to represent the vector?*
+
+Good question! My personal reason is that in Lua objects need to be garbage collected once they are done being used, so I like to avoid creating them when possible to avoid frame spikes, which is when a frame takes significantly longer to render than other frames. Regular numbers are not garbage collected so there is no danger of this happening.
+{{% /notice %}}
 
 Let's put it all together.
 
@@ -201,23 +217,20 @@ import * as vectorlight from "lua-lib/hump/vectorlight";
 export class BallSpawnTimerEngine extends Engine {
     private ball_size: number;
     private ball_speed: number;
-    private min_serve_angle: number;
-    private max_serve_angle: number;
+    private serve_angle: number;
     private middle: number;
     private height: number;
 
     public initialize(
         ball_size: number,
         ball_speed: number,
-        min_serve_angle: number,
-        max_serve_angle: number,
+        serve_angle: number,
         middle: number,
         height: number,
     ) {
         this.ball_size = ball_size;
         this.ball_speed = ball_speed;
-        this.min_serve_angle = min_serve_angle;
-        this.max_serve_angle = max_serve_angle;
+        this.serve_angle = serve_angle;
         this.middle = middle;
         this.height = height;
     }
@@ -232,14 +245,16 @@ export class BallSpawnTimerEngine extends Engine {
                 ball_spawn_message.y = love.math.random() * this.height;
 
                 const direction = MathHelper.randomFloat(
-                    this.min_serve_angle,
-                    this.max_serve_angle,
-                ) * (love.math.random() > 0.5 ? 1 : -1);
+                    -this.serve_angle,
+                    this.serve_angle,
+                );
+
+                const horizontal_speed = this.ball_speed * (love.math.random() > 0.5 ? 1 : -1);
 
                 [
                     ball_spawn_message.x_velocity,
                     ball_spawn_message.y_velocity,
-                ] = vectorlight.rotate(direction, 0, this.ball_speed);
+                ] = vectorlight.rotate(direction, horizontal_speed, 0);
 
                 ball_spawn_message.size = this.ball_size;
 
@@ -251,6 +266,8 @@ export class BallSpawnTimerEngine extends Engine {
 ```
 
 Every frame we subtract the remaining time by the delta-time value. Once it less than or equal to zero, we fire a BallSpawnMessage and destroy the timer entity.
+
+Notice that we remembered to destroy our timer entity at the end so it doesn't keep firing new ball spawn messages every frame. That would be bad!
 
 Don't forget to register our new Engines with the WorldBuilder.
 
