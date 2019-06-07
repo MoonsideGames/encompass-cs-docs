@@ -51,7 +51,16 @@ export class ScoreRenderer extends GeneralRenderer {
                 if (score_component) {
                     score_text.set(score_component.score.toString());
 
-                    love.graphics.draw(score_text, x, y);
+                    love.graphics.draw(
+                        score_text,
+                        x,
+                        y,
+                        0,
+                        1,
+                        1,
+                        score_text.getWidth() * 0.5,
+                        score_text.getHeight() * 0.5,
+                    );
                 }
             }
         }
