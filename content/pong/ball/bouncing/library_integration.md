@@ -45,6 +45,8 @@ export interface World {
     move(table: table, x: number, y: number): [number, number, Collision[], number];
 
     update(table: table, x: number, y: number, width?: number, height?: number): void;
+
+    remove(table: table): void;
 }
 ```
 
@@ -55,6 +57,8 @@ In Lua, *table* is our generic object. All of our classes and other objects are 
 "check" and "move" are a bit more involved. See the return type there? That means that the function returns multiple variables. This is called a "tuple return" in Lua. _@tupleReturn_ tells the TSTL transpiler that the function returns a tuple so it can translate the call directly. We'll talk more about this in a second.
 
 "check" and "move" return four variables. The first two are _actualX_ and _actualY_, which are the new positions after the move. The next is _cols_, which is a list of collisions detected during the move. The final is _len_, which is the total amount of collisions detected.
+
+"remove" takes a table and removes it from the world. This is used when objects are destroyed and no longer exist in the game.
 
 Inspecting the contents of _cols_ in the bump.lua documentation gives us the following types and interfaces:
 
