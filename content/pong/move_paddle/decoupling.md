@@ -167,7 +167,7 @@ Before we move on, let's make the paddle a little zippier.
 move_speed_component.y = 400;
 ```
 
-<video width="640" height="360" autoplay="autoplay" muted="muted" loop="loop" style="display: block; margin: 0 auto; width: 640;">
+<video width="75%" autoplay="autoplay" muted="muted" loop="loop" style="display: block; margin: 0 auto;">
     <source src="/images/faster_paddle.webm" type="video/webm">
 </video>
 

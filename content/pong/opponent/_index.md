@@ -111,7 +111,7 @@ Don't forget to add the new Engine in **game.ts**!
 world_builder.add_engine(ComputerControlEngine);
 ```
 
-<video width="640" height="360" autoplay="autoplay" muted="muted" loop="loop" style="display: block; margin: 0 auto; width: 640;">
+<video width="75%" autoplay="autoplay" muted="muted" loop="loop" style="display: block; margin: 0 auto;">
     <source src="/images/computer.webm" type="video/webm">
 </video>
 

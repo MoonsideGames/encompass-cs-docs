@@ -103,7 +103,7 @@ ball_spawn_message.y_velocity = -50;
 
 Let's run the game again.
 
-<video width="640" height="360" autoplay="autoplay" muted="muted" loop="loop" style="display: block; margin: 0 auto; width: 640;">
+<video width="75%" autoplay="autoplay" muted="muted" loop="loop" style="display: block; margin: 0 auto;">
     <source src="/images/moving_ball.webm" type="video/webm">
 </video>
 

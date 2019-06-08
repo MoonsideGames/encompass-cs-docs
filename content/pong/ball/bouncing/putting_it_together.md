@@ -99,7 +99,7 @@ Let's try it!
 npm run love
 ```
 
-<video width="75%" height="360" autoplay="autoplay" muted="muted" loop="loop" style="display: block; margin: 0 auto;">
+<video width="75%" autoplay="autoplay" muted="muted" loop="loop" style="display: block; margin: 0 auto;">
     <source src="/images/bouncing.webm" type="video/webm">
 </video>
 

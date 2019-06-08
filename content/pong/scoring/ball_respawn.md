@@ -292,7 +292,7 @@ ball_timer_spawn_message.time = 1;
 
 The moment of truth...
 
-<video width="640" height="360" autoplay="autoplay" muted="muted" loop="loop" style="display: block; margin: 0 auto; width: 640;">
+<video width="75%" autoplay="autoplay" muted="muted" loop="loop" style="display: block; margin: 0 auto;">
     <source src="/images/ball_respawn.webm" type="video/webm">
 </video>
 
