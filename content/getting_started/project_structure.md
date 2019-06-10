@@ -16,6 +16,6 @@ If we look at the Encompass/LÖVE starter project, it looks like this:
 
 **game/game.ts** contains a class that defines three methods that are called by LOVE: load, update, and draw. They do what it says on the tin. You will set up your WorldBuilder in the load method. (We'll talk about that in a bit.)
 
-The rest of it is pretty straightforward. Put your music and sprites and such in the **assets** folder. Define your components in the **components** folder, your engines in the **engines** folder, your messages in the **messages** folder, and your renderers in the **renderers** folder. (Again, we'll start getting into exactly how to define Encompass these in a minute.)
+The rest of it is pretty straightforward. Put your music and sprites and such in the **assets** folder. Define your components in the **components** folder, your engines in the **engines** folder, your messages in the **messages** folder, and your renderers in the **renderers** folder. (Again, we'll start getting into exactly how to define these in a minute.)
 
 Finally, a quick note about **helpers**. I like to use classes with static methods for common behaviors that will be useful for many different engines, for example a `Color` class with a `hsv_to_rgb` conversion function. Be careful not to abuse helpers. If your helpers need to be instantiated, that is usually a sign that the behavior belongs in an engine.

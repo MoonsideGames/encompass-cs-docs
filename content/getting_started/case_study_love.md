@@ -1,7 +1,7 @@
 ---
 title: "Case Study: LÖVE"
 date: 2019-05-22T10:38:01-07:00
-weight: 10
+weight: 12
 ---
 
 First, install [LÖVE](https://love2d.org).

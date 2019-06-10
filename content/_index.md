@@ -15,4 +15,4 @@ Encompass is currently available with a TypeScript implementation that fully sup
 
 A C# implementation is forthcoming.
 
-If you are here to learn how to use Encompass and don't care about the justifications for it, I recommend skipping ahead to [Chapter 2](getting_started).
+If you are here to learn how to use Encompass and don't care about the justifications for it, or you've never made a game before, I recommend skipping ahead to [Chapter 2](getting_started).
