@@ -1,5 +1,5 @@
 ---
-title: "Polish"
+title: "Finishing Touches"
 date: 2019-06-08T14:44:31-07:00
 weight: 5000
 ---
