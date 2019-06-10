@@ -11,3 +11,5 @@ I strongly recommend [Git](https://git-scm.com/). You'll have to download and in
 There is an excellent tutorial on how to use Git [on the Git website](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control).
 
 The basic Git workflow is this: when you make changes, you review them and "stage" them, and then "commit" them with a message. Think of a commit as freezing your code at a particular place in time. You can always revert to this exact place once you commit. It's incredibly useful.
+
+You can also synchronize your "Git repository" with a remote server, meaning it will be backed up and centrally accessible. I recommend doing this. [GitHub](https://github.com) and [GitLab](https://gitlab.com) both provide free accounts with unlimited private repositories. They will give you instructions for how to create a new repository.
