@@ -18,6 +18,8 @@ export abstract class State {
 }
 ```
 
+Remember, _abstract_ means that the class cannot be used directly, but describes features that exist in inherited classes. So we know that anything we make that inherits from State must have a load(), update(dt), and draw() method.
+
 Let's create a new folder, **game/states**, and put **game.ts** in there. Let's also make it inherit from State:
 
 ```ts
