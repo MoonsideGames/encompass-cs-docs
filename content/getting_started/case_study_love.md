@@ -4,7 +4,11 @@ date: 2019-05-22T10:38:01-07:00
 weight: 12
 ---
 
-First, install [LÖVE](https://love2d.org).
+LÖVE is a 2D game engine that uses Lua as its scripting language. Because of this, we can use [Encompass-TS](https://github.com/encompass-ecs/encompass-ts) with the [TypescriptToLua transpiler](https://github.com/TypeScriptToLua/TypeScriptToLua) to make games for it.
+
+If you are new to TypeScript, or even new to programming in general, I _strongly_ recommend reviewing the [TypeScript handbook](https://www.typescriptlang.org/docs/handbook/basic-types.html).
+
+Install [LÖVE](https://love2d.org).
 
 Make sure you can run it from the terminal by running:
 
@@ -33,7 +37,7 @@ Now we are ready. Enter the project folder in your terminal and do:
 > npm install
 ```
 
-Encompass-TS will install everything it needs to compile your project to Lua.
+This will install everything you need to compile your project to Lua.
 
 The starter project contains some scripts to automate the build process.
 
