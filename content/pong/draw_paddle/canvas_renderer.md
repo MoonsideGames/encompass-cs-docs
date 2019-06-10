@@ -51,8 +51,8 @@ Let's fill out our *render* method.
             0,
             canvas_component.x_scale,
             canvas_component.y_scale,
-            canvas.getWidth(),
-            canvas.getHeight(),
+            canvas.getWidth() * 0.5,
+            canvas.getHeight() * 0.5,
         );
     }
 ```
