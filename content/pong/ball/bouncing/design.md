@@ -30,7 +30,19 @@ We already have MotionMessages. Let's keep those, but redirect them slightly. We
 
 Let's have the MotionEngine consolidate all the MotionMessages per-component, send out an UpdatePositionMessage with that final delta, but then also send out a CollisionCheckMessage for everything that has a BoundingBoxComponent.
 
-Finally, a CollisionDispatchEngine figures out what two kinds of objects collided and emits a Message in response. We can then implement Engines that read each of those kinds of Messages.
+Finally, a CollisionDispatchEngine figures out what two kinds of objects collided and emits a Message in response. We can then implement various collision resolution Engines that read each of those kinds of Messages. For example, a BallWallCollisionMessage would be handled by a BallWallCollisionEngine.
+
+{{<mermaid align="center">}}
+graph TD;
+Engines(Various Engines) -->|MotionMessage| MotionEngine[MotionEngine]
+MotionEngine -->|CollisionCheckMessage| CollisionCheckEngine[CollisionCheckEngine]
+CollisionCheckEngine -->|CollisionMessage| CollisionDispatchEngine[CollisionDispatchEngine]
+CollisionDispatchEngine -->|BallWallCollisionMessage| BallWallCollisionEngine[BallWallCollisionEngine]
+CollisionDispatchEngine -->|BallPaddleCollisionMessage| BallPaddleCollisionEngine[BallPaddleCollisionEngine]
+BallWallCollisionEngine -->|UpdatePositionMessage| UpdatePositionEngine
+BallPaddleCollisionEngine -->|UpdatePositionMessage| UpdatePositionEngine
+MotionEngine -->|UpdatePositionMessage| UpdatePositionEngine
+{{< /mermaid >}}
 
 Whew! That's a lot! You might be wondering why we're doing all this work just to get some objects reacting to each other.
 
