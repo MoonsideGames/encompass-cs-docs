@@ -1,5 +1,5 @@
 ---
-title: "Project Structure"
+title: "LÖVE Project Structure"
 date: 2019-05-22T12:19:55-07:00
 weight: 15
 ---
