@@ -29,7 +29,7 @@ npm
 
 You should see npm print out a bunch of help information. Now we're almost ready to begin.
 
-Download the [Encompass/LÖVE starter project](https://github.com/encompass-ecs/encompass-love2d-starter). Place its contents in a folder and rename the folder to the name of your project. Change information in the `package.json` file where appropriate.
+Download the [Encompass/LÖVE starter project](https://github.com/encompass-ecs/encompass-love2d-starter/releases). Place its contents in a folder and rename the folder to the name of your project. Change information in the `package.json` file where appropriate.
 
 Now we are ready. Enter the project folder in your terminal and do:
 
