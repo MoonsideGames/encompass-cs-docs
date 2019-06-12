@@ -17,7 +17,7 @@ That means it needs to run on top of an engine.
 Ultimately, this is a question that you have to answer for your project. Is there an engine you're already comfortable with? Which platforms are you targeting? Linux? PS4? Android? Are there any features you would really like to have, like a built-in physics simulator? These are questions that could help you choose an engine.
 
 Encompass-TS can hook into any engine that supports JavaScript or Lua scripting.
-Encompass-CS can hook into any engine that supports C# scripting.
+Encompass-CS can hook into any engine that supports C# scripting. (**NOTE:** Encompass-CS is not done yet.)
 
 So you have a lot of choices!
 

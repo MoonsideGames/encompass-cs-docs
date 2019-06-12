@@ -4,7 +4,7 @@ title: "Encompass"
 
 # Encompass
 
-Encompass is a powerful engine-agnostic framework to help you code games, or other kinds of simulations.
+[Encompass](https://github.com/encompass-ecs) is a powerful engine-agnostic framework to help you code games, or other kinds of simulations.
 
 Object-oriented code is messy and rapidly becomes unmaintainable.
 
