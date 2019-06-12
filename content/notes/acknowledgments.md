@@ -12,6 +12,8 @@ Thanks to Mitch Gerrard for doing a bunch of graph theory problems with me.
 
 Thanks to the Glitch City LA community for keeping me alive all these years of making games.
 
-Thanks also to the creators and maintainers of LÖVE, a wonderful tool which awakened me to the potential joys of game programming.
+Thanks to the creators and maintainers of LÖVE, a wonderful tool which awakened me to the potential joys of game programming.
+
+Thanks to the developers of TypeScriptToLua, an impressive project which unlocked the power of static typing in LÖVE. Encompass-TS would not have been made without it.
 
 My name is Evan Hemsley, and I am a game programmer and digital artist. I hope you make some great projects with Encompass! And if you do, please tell me about them!
