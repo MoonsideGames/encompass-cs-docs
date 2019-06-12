@@ -10,7 +10,7 @@ Really, when we talk about decoupling, we are saying that we don't want the stru
 
 This is a pretty abstract principle, but there is a nice illustration of it in our program as it exists right now.
 
-Right now our InputEngine is sending Messages to our MotionMessage. Is that actually what we want?
+Right now our InputEngine is sending Messages to our MotionEngine. Is that actually what we want?
 
 What I am saying is... can you think of an example where something other than direct input might want to control the movement of a paddle?
 
