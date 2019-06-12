@@ -44,7 +44,7 @@ import { PositionComponent } from "game/components/position";
 import { CollisionCheckMessage } from "game/messages/collision_check";
 import { MotionMessage } from "game/messages/component/motion";
 import { UpdatePositionMessage } from "game/messages/update_position";
-import { GCOptimizedList, GCOptimizedSet } from "tstl-gc-optimized-collections";
+import { GCOptimizedList, GCOptimizedSet } from "encompass-gc-optimized-collections";
 
 @Reads(MotionMessage)
 @Emits(UpdatePositionMessage, CollisionCheckMessage)

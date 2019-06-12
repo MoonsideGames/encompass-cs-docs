@@ -73,7 +73,7 @@ In **game/engines/update_velocity.ts**:
 import { ComponentModifier, Mutates, Reads } from "encompass-ecs";
 import { VelocityComponent } from "game/components/velocity";
 import { UpdateVelocityMessage } from "game/messages/update_velocity";
-import { GCOptimizedSet } from "tstl-gc-optimized-collections";
+import { GCOptimizedSet } from "encompass-gc-optimized-collections";
 
 @Reads(UpdateVelocityMessage)
 @Mutates(VelocityComponent)
