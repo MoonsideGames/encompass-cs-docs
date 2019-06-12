@@ -15,21 +15,19 @@ import { Entity, EntityRenderer } from "encompass-ecs";
 import { CanvasComponent } from "game/components/canvas";
 import { PositionComponent } from "game/components/position";
 
+@Renders(CanvasComponent, PositionComponent)
 export class CanvasRenderer extends EntityRenderer {
-    public component_types = [ PositionComponent ];
-    public draw_component_type = CanvasComponent;
-
     public render(entity: Entity) {}
 }
 ```
 
-An *EntityRenderer* is defined by two properties and a method.
+An *EntityRenderer* is defined by the Components it tracks and a *render* method.
 
-* It needs to have *component_types*, which is a list of Component types.
-* It needs to specify a single *draw_component_type*.
-* It needs to define a *render* method.
+**@Renders** is a function called a *class decorator*. Its first argument should be the DrawComponent, and the subsequent arguments are any number of components that are also required for the EntityRenderer to *track* an Entity.
 
-When an Entity has all of the Components listed in *component_types*, and a DrawComponent of *draw_component_type*, then it begins to *track* the Entity.
+{{% notice tip %}}
+You can read more about decorators on the [official TypeScript documentation](https://www.typescriptlang.org/docs/handbook/decorators.html).
+{{% /notice %}}
 
 Each time *World.draw* is called, the EntityRenderer will run its *render* method on each Entity that it is tracking.
 
