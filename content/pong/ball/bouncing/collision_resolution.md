@@ -88,3 +88,35 @@ export class UpdateVelocityEngine extends ComponentModifier {
     }
 }
 ```
+
+Our BallPaddleCollisionEngine will behave the exact same way. Why don't you try to fill it in yourself?
+
+Finally, we want to make sure our paddles don't go past the game boundary.
+
+```ts
+import { Emits, Engine, Reads } from "encompass-ecs";
+import { BoundingBoxComponent } from "game/components/bounding_box";
+import { PositionComponent } from "game/components/position";
+import { PaddleWallCollisionMessage } from "game/messages/collisions/paddle_wall";
+import { UpdatePositionMessage } from "game/messages/update_position";
+
+@Reads(PaddleWallCollisionMessage)
+@Emits(UpdatePositionMessage)
+export class PaddleWallCollisionEngine extends Engine {
+    public update() {
+        for (const message of this.read_messages(PaddleWallCollisionMessage).values()) {
+            const paddle_position = message.paddle_entity.get_component(PositionComponent);
+            const paddle_bounding_box = message.paddle_entity.get_component(BoundingBoxComponent);
+
+            const x_distance = Math.abs(message.paddle_new_x - (message.touch.x + paddle_bounding_box.width * 0.5));
+            const y_distance = Math.abs(message.paddle_new_y - (message.touch.y + paddle_bounding_box.height * 0.5));
+
+            const position_message = this.emit_component_message(UpdatePositionMessage, paddle_position);
+            position_message.x_delta = message.normal.x * x_distance;
+            position_message.y_delta = message.normal.y * y_distance;
+        }
+    }
+}
+```
+
+That's it for defining our collision behavior!

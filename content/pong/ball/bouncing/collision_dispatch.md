@@ -27,7 +27,14 @@ export class CollisionDispatchEngine extends Engine {
                 case CollisionType.ball:
                     switch (collision_message.collision_type_two) {
                         case CollisionType.paddle: {
-                            // an exercise for the reader ;)
+                            const message = this.emit_message(BallPaddleCollisionMessage);
+                            message.ball_entity = collision_message.entity_one;
+                            message.paddle_entity = collision_message.entity_two;
+                            message.ball_new_x = collision_message.entity_one_new_x;
+                            message.ball_new_y = collision_message.entity_one_new_y;
+                            message.normal = collision_message.collision_data.normal;
+                            message.touch = collision_message.collision_data.touch;
+                            break;
                         }
 
                         case CollisionType.wall: {
@@ -46,7 +53,14 @@ export class CollisionDispatchEngine extends Engine {
                 case CollisionType.paddle: {
                     switch (collision_message.collision_type_two) {
                         case CollisionType.wall: {
-                            // another exercise for the reader ;)
+                            const message = this.emit_message(PaddleWallCollisionMessage);
+                            message.paddle_entity = collision_message.entity_one;
+                            message.paddle_new_x = collision_message.entity_one_new_x;
+                            message.paddle_new_y = collision_message.entity_one_new_y;
+                            message.wall_entity = collision_message.entity_two;
+                            message.normal = collision_message.collision_data.normal;
+                            message.touch = collision_message.collision_data.touch;
+                            break;
                         }
                     }
                 }
@@ -56,9 +70,9 @@ export class CollisionDispatchEngine extends Engine {
 }
 ```
 
-Now we are emitting a BallWallCollisionMessage every time a ball collides with a wall. Why don't you try filling in the other collision messages yourself?
+Now we are emitting proper collision messages every time an entity collides with another.
 
-Don't forget to add it in **game.ts**
+Don't forget to add our new engine in **game.ts**
 
 ```ts
     world_builder.add_engine(CollisionDispatchEngine);
@@ -69,3 +83,5 @@ Clever readers have probably noticed that this is a bit of an awkward structure.
 
 What you really want to do, fundamentally, is map two collision types, independent of order, to a message emitting function. You'll probably need to implement a custom data structure to do this cleanly. It's very much outside of the scope of this tutorial for me to do this, but I wish you luck!
 {{% /notice %}}
+
+Next, we'll make our game actually do things in response to these messages.
