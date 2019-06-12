@@ -41,8 +41,6 @@ import { BallSpawnMessage } from "game/messages/ball_spawn";
 
 @Reads(BallSpawnMessage)
 export class BallSpawner extends Spawner {
-    public spawn_message_type = BallSpawnMessage;
-
     public spawn(message: BallSpawnMessage) {
         const ball_entity = this.create_entity();
 
@@ -65,9 +63,10 @@ export class BallSpawner extends Spawner {
 }
 ```
 
-Spawners aren't very complicated. They have one required property and method: *spawn_message_type* and *spawn*.
+Spawners aren't very complicated. They have one required method: *spawn*.
+The first Message type given to **@Reads** is assumed to be the spawn message type.
 
-When the Spawner reads a message of *spawn_message_type*, it runs its spawn method once. Simple as that.
+When the Spawner reads a message of the spawn message type, it runs its spawn method once. Simple as that.
 
 Now let's actually send out the BallSpawnMessage.
 

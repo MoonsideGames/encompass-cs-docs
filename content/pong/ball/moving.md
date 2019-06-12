@@ -36,9 +36,8 @@ import { VelocityComponent } from "game/components/velocity";
 import { MotionMessage } from "game/messages/component/motion";
 
 @Emits(MotionMessage)
+@Detects(PositionComponent, VelocityComponent)
 export class VelocityEngine extends Detector {
-    public component_types = [ PositionComponent, VelocityComponent ];
-
     protected detect(entity: Entity) {
         const position_component = entity.get_component(PositionComponent);
         const velocity_component = entity.get_component(VelocityComponent);
@@ -50,9 +49,9 @@ export class VelocityEngine extends Detector {
 }
 ```
 
-A Detector, like a Spawner, is an engine with one required property and method: *component_types* and *detect*.
+A Detector, like a Spawner, is an engine with one required method: *detect*.
 
-When an Entity has all of the components specified in *component_types*, it begins to track the Entity. Each frame, it calls its *detect* method on that Entity.
+When an Entity has all of the components specified in **@Detects**, it begins to track the Entity. Each frame, it calls its *detect* method on that Entity.
 
 So, our VelocityEngine will track everything with a PositionComponent and VelocityComponent and create a MotionMessage every frame.
 

@@ -77,7 +77,7 @@ It's also very expensive to create a new LOVE Font every frame. Like the Text ob
 Let's add our ScoreRenderer to the WorldBuilder.
 
 ```ts
-world_builder.add_renderer(ScoreRenderer);
+world_builder.add_renderer(ScoreRenderer).initialize(play_area_width * 0.5);
 ```
 
 <video width="75%" autoplay="autoplay" muted="muted" loop="loop" style="display: block; margin: 0 auto;">

@@ -40,8 +40,6 @@ import { World } from "lua-lib/bump";
 
 @Reads(BallSpawnMessage)
 export class BallSpawner extends Spawner {
-    public spawn_message_type = BallSpawnMessage;
-
     public collision_world: World;
 
     public initialize(collision_world: World) {
@@ -110,8 +108,6 @@ import { World } from "lua-lib/bump";
 
 @Reads(GameBoundarySpawnMessage)
 export class GameBoundarySpawner extends Spawner {
-    public spawn_message_type = GameBoundarySpawnMessage;
-
     private collision_world: World;
 
     public initialize(collision_world: World) {
@@ -174,8 +170,6 @@ import { World } from "lua-lib/bump";
 
 @Reads(PaddleSpawnMessage)
 export class PaddleSpawner extends Spawner {
-    public spawn_message_type = PaddleSpawnMessage;
-
     private collision_world: World;
 
     public initialize(collision_world: World) {
