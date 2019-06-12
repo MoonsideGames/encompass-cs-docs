@@ -15,3 +15,5 @@ We'll be developing this with the Encompass/LOVE starter pack. Go ahead and [set
 {{% notice tip %}}
 I recommend following along with the tutorial by actually typing out the code rather than cut-and-pasting. You'll be able to follow the structure of what's happening much better. Think of it like taking notes.
 {{% /notice %}}
+
+If at any point you become confused in the tutorial, feel free to ask questions in our [Discord server](https://discord.gg/ZYE88fK) or file an issue report on our [GitHub Issues page](https://github.com/encompass-ecs/docs/issues). You can also take a look at the exact tutorial code in the [GitHub repo](https://github.com/encompass-ecs/encompass-pong-example).
