@@ -53,4 +53,4 @@ export class PointRenderer extends EntityRenderer {
 }
 ```
 
-For 2D games, you will need to be use layers to be specific about the order in which entities draw. For a 3D game you will probably end up delegating rendering to some kind of scene/camera system.
+For 2D games, you will need to use layers to be specific about the order in which entities draw. For a 3D game you will probably end up delegating rendering to some kind of scene/camera system.
