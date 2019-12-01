@@ -27,6 +27,20 @@
     font-weight: 200;
 }
 @font-face {
+    font-family: 'Public Sans';
+    src: url("../fonts/publicsans-regular-webfont.woff") format("woff");
+    src: url("../fonts/publicsans-regular-webfont.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'Public Sans';
+    src: url("../fonts/publicsans-light-webfont.woff") format("woff");
+    src: url("../fonts/publicsans-light-webfont.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 300;
+}
+@font-face {
     font-family: 'Work Sans';
     font-style: normal;
     font-weight: 300;
@@ -448,10 +462,10 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
     margin: 0;
 }
 body {
-    font-family: "Work Sans", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
+    font-family: "Public Sans", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
     font-weight: 300;
     line-height: 1.6;
-    font-size: 18px !important;
+    font-size: 16px !important;
 }
 h2, h3, h4, h5, h6 {
     font-family: "Work Sans", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;

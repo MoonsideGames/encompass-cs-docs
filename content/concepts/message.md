@@ -8,19 +8,18 @@ Similar to Components, Messages are collections of data.
 
 Messages are used to transmit data between Engines so they can manipulate the game state accordingly.
 
-To define a message, extend the Message class.
+To define a message, declare a struct which implements the IMessage interface.
 
-```ts
-import { Message } from "encompass-ecs";
+```cs
+using Encompass;
 
-class MotionMessage extends Message {
-    public x: number;
-    public y: number;
+public struct MotionMessage : IMessage {
+    public Vector2 motion;
 }
 ```
 
 Messages are temporary and destroyed at the end of the frame.
 
 {{% notice notice %}}
-Ok fine, since you asked, Messages actually live in an object pool so that they aren't garbage-collected at runtime. But you as the game developer don't have to worry about that.
+Because structs are value types, we can create as many of them as we want without worrying about creating pressure on the garbage collector. Neato!
 {{% /notice %}}

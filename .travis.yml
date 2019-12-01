@@ -20,7 +20,7 @@ deploy:
   # The output of our static site
   local_dir: public
   # The repository we are deploying to
-  repo: encompass-ecs/encompass-ecs.github.io
+  repo: MoonsideGames/moonsidegames.github.io
   # The branch we are pushing the static repository
   target_branch: master
   # Information to use in the commit
