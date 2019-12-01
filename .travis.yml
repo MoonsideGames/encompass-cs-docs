@@ -31,5 +31,6 @@ deploy:
   skip_cleanup: true
   # Set in Travis CI dashboard
   github_token: $GITHUB_TOKEN
+  keep_history: true
   on:
     branch: master
