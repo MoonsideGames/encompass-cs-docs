@@ -1,5 +1,5 @@
 baseURL = "https://moonsidegames.github.io/docs/encompass/"
-publishDir = "public/docs/encompass"
+publishDir = "public"
 languageCode = "en-US"
 title = "Encompass Docs"
 theme = ["hugo-notice", "hugo-theme-learn"]
