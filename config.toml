@@ -1,4 +1,4 @@
-baseURL = "/"
+baseURL = "https://moonsidegames.github.io/docs/encompass/"
 publishDir = "public/docs/encompass"
 languageCode = "en-US"
 title = "Encompass Docs"
